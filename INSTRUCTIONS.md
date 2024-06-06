@@ -29,7 +29,8 @@ The final message you will receive in the stream will be a JSON object with the 
 
 
 ## Submission Guidelines
-- Submit your project as clone of this git repository.
+- Submit your project as link to your clone of this git repository.
+  - You may also zip up your project including the `.git` directory and email it to us.
 - You must include a README detailing how to run your solution.
 - Your solution must be written using Javascript.
 - You may use any frameworks or packages.
