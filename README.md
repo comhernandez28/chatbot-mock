@@ -20,11 +20,11 @@ With the server running, execute `python3 client.py` to ensure the server is run
 
 ## Frontend
 
-See [frontend/src/components/ChatWindow.tsx] for the main feature component.
+See [frontend/src/components/ChatWindow.tsx](frontend/src/components/ChatWindow.tsx) for the main feature component.
 After downloading this codebase to your machine run the following:
 
 ```
 cd frontend
 npm install
-npm run build
+npm run start
 ```
