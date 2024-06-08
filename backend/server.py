@@ -16,7 +16,8 @@ def random_paragraph():
 
 
 def get_text():
-    return "\n\n".join(random_paragraph() for _ in range(5))
+    # For testing purposes changed to 1 paragraph instead of 5
+    return "\n\n".join(random_paragraph() for _ in range(2))
 
 @app.route('/stream', methods=['POST'])
 def stream_string():
