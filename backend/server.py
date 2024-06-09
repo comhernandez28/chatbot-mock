@@ -16,8 +16,7 @@ def random_paragraph():
 
 
 def get_text():
-    # For testing purposes changed to 1 paragraph instead of 5
-    return "\n\n".join(random_paragraph() for _ in range(2))
+    return "\n\n".join(random_paragraph() for _ in range(5))
 
 @app.route('/stream', methods=['POST'])
 def stream_string():
@@ -26,7 +25,8 @@ def stream_string():
 
         for char in get_text():
             buffer += char
-            if len(buffer.encode('utf-8')) >= 5 and buffer[-1] != '\\':
+            # Added the not in so we could not end the current buffer on a backtick
+            if len(buffer.encode('utf-8')) >= 5 and buffer[-1] not in ['\\', '`']:
                 yield json.dumps({"text": buffer, "done": False}) + "\n"
                 buffer = ""
         

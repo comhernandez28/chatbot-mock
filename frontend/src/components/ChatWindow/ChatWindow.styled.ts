@@ -18,22 +18,23 @@ export const Container = styled.div`
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	width: 500px;
-	max-width: 100%;
-
 	margin: 20px auto;
 	padding: 20px;
 	display: flex;
 	position: relative;
 	flex-direction: column;
 	justify-content: flex-end;
-	height: 70vh; // Full height of the viewport
+	height: 80vh;
+	overflow: hidden;
 
-	overflow: hidden; // Prevent overflow
+	@media (max-width: 768px) {
+		max-width: 80vw;
+	}
 `;
 
 export const MessagesWrapper = styled.div`
 	flex: 1;
-	overflow-y: auto; // Enable vertical scrolling
+	overflow-y: auto;
 	padding: 10px;
 `;
 

@@ -1,18 +1,14 @@
 import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
+	StreamObj,
 	fetchChatbotRequest,
 	clearChatbotResponse,
 } from '../../store/actions/chatbotActions';
 import { RootState } from '../../store/store';
 import * as S from './ChatWindow.styled';
-import { Badge, Input } from '../index';
+import { Badge, Button, Input } from '../index';
 import DOMPurify from 'dompurify';
-
-interface StreamObj {
-	text?: string;
-	done: boolean;
-}
 
 interface Message {
 	content: string;
@@ -25,7 +21,6 @@ const ChatWindow = () => {
 	const [messages, setMessages] = useState<Message[]>([]);
 	const [inputText, setInputText] = useState('');
 	const [isStreamingMessage, setIsStreamingMessage] = useState(false);
-	const [latestStreamArray, setLatestStreamArray] = useState<StreamObj[]>([]);
 	const messagesEndRef = useRef<HTMLDivElement>(null);
 
 	const handleSendMessage = () => {
@@ -35,7 +30,6 @@ const ChatWindow = () => {
 		};
 		setMessages([...messages, newMessage]);
 		setInputText('');
-		setLatestStreamArray([...latestStreamArray]);
 
 		// Simulate the server generating a response
 		setTimeout(() => {
@@ -59,19 +53,16 @@ const ChatWindow = () => {
 		let newText = '';
 		if (chatbotData.length > 0 && Array.isArray(chatbotData[0])) {
 			setIsStreamingMessage(true);
-			const latestStreamArray = chatbotData[0]; // Store the latest streamed array
-			setLatestStreamArray(latestStreamArray);
 			const wordStreamArray: StreamObj[] = chatbotData[0];
-			console.log(chatbotData);
-			console.log('latest', latestStreamArray);
 
 			const appendText = (index: number) => {
 				if (index < wordStreamArray.length) {
 					const { text, done } = wordStreamArray[index];
-					let decodedText = text
+					let decodedText: string = text
 						? text
-								.replace(/\\n\n/g, '<br/>')
-								.replace(/\\n\\n/g, '<br/><br/>')
+								.replace(/\n```/g, '</code></pre>')
+								.replace(/```\n/g, '<pre><code>')
+								.replace(/\n/g, '<br />')
 						: '';
 					if (decodedText !== '') {
 						setTimeout(() => {
@@ -81,7 +72,8 @@ const ChatWindow = () => {
 									prevStreamedText + decodedText
 							);
 							appendText(index + 1);
-						}, 200);
+							//controls speed of text: default 200ms
+						}, 1);
 					} else if (done) {
 						setIsStreamingMessage(false);
 						setMessages(prevMessages => [
@@ -98,11 +90,12 @@ const ChatWindow = () => {
 			};
 
 			appendText(0);
+			console.log(DOMPurify.removed);
 		}
 	}, [chatbotData]);
 
 	return (
-		<div>
+		<>
 			<S.Container>
 				<S.MessagesWrapper>
 					{messages.map((message, index) =>
@@ -133,10 +126,9 @@ const ChatWindow = () => {
 						</S.MessageLeft>
 					)}{' '}
 					<div ref={messagesEndRef}></div>
-					{/* This will be used to scroll to the bottom */}
+					{/* This div is used to scroll to the bottom */}
 				</S.MessagesWrapper>
-
-				<div>
+				<>
 					<Input
 						type="textarea"
 						placeholder="Message VirtuousAI"
@@ -146,16 +138,16 @@ const ChatWindow = () => {
 								HTMLInputElement | HTMLTextAreaElement
 							>
 						) => setInputText(e.target.value)}
-					></Input>
-					<button
+					/>
+					<Button
 						disabled={isStreamingMessage}
 						onClick={handleSendMessage}
 					>
-						Send Message
-					</button>
-				</div>
+						Ask
+					</Button>
+				</>
 			</S.Container>
-		</div>
+		</>
 	);
 };
 

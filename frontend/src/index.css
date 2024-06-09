@@ -5,6 +5,13 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+pre {
+	background-color: #f8f8f8;
+	white-space: wrap;
+	margin: 0;
+}
+
 code {
-	font-family: 'Source Sans Pro', sans-serif;
+	color: black;
+	font-family: 'Courier New', Courier, monospace;
 }
