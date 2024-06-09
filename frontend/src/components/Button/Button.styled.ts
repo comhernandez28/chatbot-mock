@@ -4,12 +4,18 @@ export const Button = styled.button`
 	background-color: ${props => props.theme.colors.primary};
 	color: white;
 	border: none;
-	padding: 8px 16px;
-	border-radius: 4px;
+	padding: 15px;
+	border-radius: 15px;
+	margin: 0 4px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
 
 	&:hover {
-		background-color: ${props => props.theme.colors.primaryDark};
+		background-color: ${props => props.theme.colors.black};
+	}
+
+	&:disabled {
+		background-color: #ccc;
+		cursor: not-allowed;
 	}
 `;

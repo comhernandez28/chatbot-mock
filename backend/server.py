@@ -16,6 +16,10 @@ def random_paragraph():
 
 
 def get_text():
+    # This will sometimes stop a code block from ending with the way we are displaying code right now
+    # Edge case is {"text": "```\n\n", "done": False} after a valid attempt at closing the code block with \n```
+    # {text: 'met.\n', done: false}
+    # {text: '```\n\n', done: false}
     return "\n\n".join(random_paragraph() for _ in range(5))
 
 @app.route('/stream', methods=['POST'])

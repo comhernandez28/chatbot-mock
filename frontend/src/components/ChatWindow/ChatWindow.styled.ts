@@ -58,6 +58,7 @@ export const MessageRight = styled.div`
 	position: relative;
 	text-align: right;
 	justify-content: flex-end;
+	overflow-wrap: anywhere;
 	border: 1px solid ${props => props.theme.colors.highlight};
 `;
 
@@ -66,4 +67,10 @@ export const Content = styled.span`
 	font-size: 1rem;
 	line-height: 1.5;
 	margin: 0;
+`;
+
+export const SubmitContainer = styled.div`
+	display: flex;
+	align-items: center;
+	width: 100%;
 `;

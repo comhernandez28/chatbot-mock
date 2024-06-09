@@ -72,8 +72,7 @@ const ChatWindow = () => {
 									prevStreamedText + decodedText
 							);
 							appendText(index + 1);
-							//controls speed of text: default 200ms
-						}, 1);
+						}, 200);
 					} else if (done) {
 						setIsStreamingMessage(false);
 						setMessages(prevMessages => [
@@ -90,7 +89,6 @@ const ChatWindow = () => {
 			};
 
 			appendText(0);
-			console.log(DOMPurify.removed);
 		}
 	}, [chatbotData]);
 
@@ -128,7 +126,7 @@ const ChatWindow = () => {
 					<div ref={messagesEndRef}></div>
 					{/* This div is used to scroll to the bottom */}
 				</S.MessagesWrapper>
-				<>
+				<S.SubmitContainer>
 					<Input
 						type="textarea"
 						placeholder="Message VirtuousAI"
@@ -140,12 +138,12 @@ const ChatWindow = () => {
 						) => setInputText(e.target.value)}
 					/>
 					<Button
-						disabled={isStreamingMessage}
+						disabled={isStreamingMessage || inputText.trim() === ''}
 						onClick={handleSendMessage}
 					>
 						Ask
 					</Button>
-				</>
+				</S.SubmitContainer>
 			</S.Container>
 		</>
 	);
