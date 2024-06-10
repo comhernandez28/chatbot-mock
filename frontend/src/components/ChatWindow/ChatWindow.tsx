@@ -101,7 +101,7 @@ const ChatWindow = () => {
 
 			appendText(0);
 		}
-	}, [chatbotData]);
+	}, [chatbotData, dispatch]);
 
 	return (
 		<>
