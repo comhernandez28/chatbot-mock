@@ -28,3 +28,13 @@ cd frontend
 npm install
 npm run start
 ```
+
+Frontend stack and key packages include:
+
+- Create React App Boilerplate
+- React
+- Typescript
+- Redux, Redux Saga
+- Axios
+- Styled components
+- DOMPurify
