@@ -26,6 +26,7 @@ export const StyledTextarea = styled.textarea`
 	padding: 15px;
 	border: 1px solid #ccc;
 	border-radius: 15px;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 1rem;
 	outline: none;
 	transition: border-color 0.2s;

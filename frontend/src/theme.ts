@@ -1,8 +1,9 @@
 const colors = {
 	primary: '#081C15',
 	secondary: '#40916C',
-	highlight: '#74C69D',
+	highlight: '#03A9F4',
 	light: '#D8F3DC',
+	buttonMain: '#03A9F4',
 	dark: '#141414',
 	success: '#28a745',
 	warning: '#ffc107',

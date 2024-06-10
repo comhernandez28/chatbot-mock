@@ -8,6 +8,7 @@ interface InputProps {
 	type: InputType;
 	placeholder: string;
 	value: string;
+	onKeyDown: React.KeyboardEventHandler;
 	onChange: (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 	) => void;
@@ -17,6 +18,7 @@ const Input: React.FC<InputProps> = ({
 	type,
 	placeholder,
 	value,
+	onKeyDown,
 	onChange,
 }) => {
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -37,6 +39,7 @@ const Input: React.FC<InputProps> = ({
 					rows={1}
 					placeholder={placeholder}
 					value={value}
+					onKeyDown={onKeyDown}
 					onChange={onChange}
 				/>
 			) : (
@@ -44,6 +47,7 @@ const Input: React.FC<InputProps> = ({
 					type={type}
 					placeholder={placeholder}
 					value={value}
+					onKeyDown={onKeyDown}
 					onChange={onChange}
 				/>
 			)}

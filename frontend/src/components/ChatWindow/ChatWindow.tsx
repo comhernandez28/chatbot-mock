@@ -37,6 +37,13 @@ const ChatWindow = () => {
 		}, 500);
 	};
 
+	const handleKeyDown = (event: React.KeyboardEvent) => {
+		if (event.key === 'Enter' && inputText.trim() !== '') {
+			event.preventDefault();
+			handleSendMessage();
+		}
+	};
+
 	const chatbotData = useSelector((state: RootState) => state.chatbot.data);
 
 	useEffect(() => {
@@ -131,6 +138,7 @@ const ChatWindow = () => {
 						type="textarea"
 						placeholder="Message VirtuousAI"
 						value={inputText}
+						onKeyDown={handleKeyDown}
 						onChange={(
 							e: React.ChangeEvent<
 								HTMLInputElement | HTMLTextAreaElement

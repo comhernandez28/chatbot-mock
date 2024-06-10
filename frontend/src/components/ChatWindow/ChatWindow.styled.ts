@@ -15,6 +15,7 @@ export const StreamedResponse = styled.span`
 
 export const Container = styled.div`
 	background-color: #f8f8f8;
+	border: 1px solid ${props => props.theme.colors.buttonMain};
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	width: 500px;
