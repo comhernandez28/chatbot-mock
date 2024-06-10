@@ -18,9 +18,14 @@ def random_paragraph():
 def get_text():
     # This will sometimes stop a code block from ending with the way we are displaying code right now
     # Edge case is {"text": "```\n\n", "done": False} after a valid attempt at closing the code block with \n```
+
+    # Example mistakes:
     # {text: 'met.\n', done: false}
     # {text: '```\n\n', done: false}
-    return "\n\n".join(random_paragraph() for _ in range(5))
+
+    # return "\n\n".join(random_paragraph() for _ in range(5))
+    # In order to balance the front end processing of back end responses we send out br tags here
+    return "<br /><br />".join(random_paragraph() for _ in range(5))
 
 @app.route('/stream', methods=['POST'])
 def stream_string():
@@ -30,7 +35,7 @@ def stream_string():
         for char in get_text():
             buffer += char
             # Added the not in so we could not end the current buffer on a backtick
-            if len(buffer.encode('utf-8')) >= 5 and buffer[-1] not in ['\\', '`']:
+            if len(buffer.encode('utf-8')) >= 5 and buffer[-1] not in ['\\', '`', '\n']:
                 yield json.dumps({"text": buffer, "done": False}) + "\n"
                 buffer = ""
         

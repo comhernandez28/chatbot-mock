@@ -42,7 +42,7 @@ export const MessagesWrapper = styled.div`
 export const MessageLeft = styled.div`
 	background-color: #fff;
 	border-radius: 15px;
-	padding: 10px;
+	padding: 10px 20px 10px 10px;
 	margin-bottom: 10px;
 	display: flex;
 	position: relative;
@@ -53,7 +53,7 @@ export const MessageLeft = styled.div`
 export const MessageRight = styled.div`
 	background-color: #fff;
 	border-radius: 15px;
-	padding: 10px;
+	padding: 10px 10px 10px 20px;
 	margin-bottom: 10px;
 	display: flex;
 	position: relative;

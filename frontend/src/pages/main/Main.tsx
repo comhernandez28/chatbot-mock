@@ -5,7 +5,7 @@ import { ChatWindow } from '../../components';
 
 function Main() {
 	return (
-		<div>
+		<>
 			<S.Container>
 				<S.MainSection>
 					<S.Content>
@@ -14,7 +14,7 @@ function Main() {
 					</S.Content>
 				</S.MainSection>
 			</S.Container>
-		</div>
+		</>
 	);
 }
 

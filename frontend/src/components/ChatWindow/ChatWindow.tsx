@@ -61,6 +61,7 @@ const ChatWindow = () => {
 		if (chatbotData.length > 0 && Array.isArray(chatbotData[0])) {
 			setIsStreamingMessage(true);
 			const wordStreamArray: StreamObj[] = chatbotData[0];
+			console.log(wordStreamArray);
 
 			const appendText = (index: number) => {
 				if (index < wordStreamArray.length) {
@@ -79,7 +80,7 @@ const ChatWindow = () => {
 									prevStreamedText + decodedText
 							);
 							appendText(index + 1);
-						}, 200);
+						}, 1);
 					} else if (done) {
 						setIsStreamingMessage(false);
 						setMessages(prevMessages => [
