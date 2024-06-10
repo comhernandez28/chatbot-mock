@@ -25,6 +25,7 @@ const ChatWindow = () => {
 
 	const handleSendMessage = () => {
 		const newMessage: Message = {
+			// Need to sanitize input to stop users from trying to submit scripts or other malicious text
 			content: DOMPurify.sanitize(inputText),
 			sender: 'right',
 		};
@@ -63,6 +64,7 @@ const ChatWindow = () => {
 			const wordStreamArray: StreamObj[] = chatbotData[0];
 
 			const appendText = (index: number) => {
+				// Handles our processing of the object stream we receive from the backend and appends a few characters at a time
 				if (index < wordStreamArray.length) {
 					const { text, done } = wordStreamArray[index];
 					let decodedText: string = text
@@ -79,6 +81,8 @@ const ChatWindow = () => {
 									prevStreamedText + decodedText
 							);
 							appendText(index + 1);
+							// Note: If you would like to test multiple times to see the available responses, modify the timeout below:
+							// }, 1);
 						}, 200);
 					} else if (done) {
 						setIsStreamingMessage(false);
@@ -131,7 +135,7 @@ const ChatWindow = () => {
 						</S.MessageLeft>
 					)}{' '}
 					<div ref={messagesEndRef}></div>
-					{/* This div is used to scroll to the bottom */}
+					{/* This div is used to scroll to the bottom of the messages */}
 				</S.MessagesWrapper>
 				<S.SubmitContainer>
 					<Input
